@@ -1,6 +1,5 @@
 import 'dart:async';
 import 'dart:math';
-
 import 'package:flutter_polyline_points/flutter_polyline_points.dart';
 import 'package:geolocator/geolocator.dart';
 import 'package:flutter/material.dart';
@@ -37,6 +36,7 @@ class MappyState extends State<Mappy> {
   }
 
   Map<PolylineId, Polyline> polylines = {};
+  
   List<LatLng> polylineCoordinates = [];
   PolylinePoints polylinePoints = PolylinePoints();
   String googleAPiKey = "AIzaSyDJu89H8BuFgVRPmlEAEhO4RJ8ym7Wf85I";
@@ -150,9 +150,11 @@ class MappyState extends State<Mappy> {
                   onPressed: () async {
                     List<Location> locations =
                         await getLocationLatLng(_destinationController.text);
+                    print(locations);
                     setState(() {
                       _destinationLocation = locations[0];
                       isDestinationSet = true;
+                      print('HERE ARE THE POLY LINES $polylines');
                     });
                     await Future.delayed(const Duration(seconds: 5));
                     getPolyline();
@@ -201,6 +203,7 @@ class MappyState extends State<Mappy> {
         ),
         floatingActionButton: FloatingActionButton.extended(
           onPressed: () {
+            print(Set<Polyline>.of(polylines.values));
             addMarker('_currentLocationMarker',
                 LatLng(_currentPosition.latitude, _currentPosition.longitude));
             goToPlace(
@@ -240,6 +243,7 @@ class MappyState extends State<Mappy> {
   }
 
   addPolyline() {
+    polylines.clear();
     PolylineId id = const PolylineId('poly');
     Polyline polyline = Polyline(
       polylineId: id,

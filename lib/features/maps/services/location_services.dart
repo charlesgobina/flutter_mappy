@@ -2,7 +2,7 @@ import 'dart:convert';
 import 'package:http/http.dart' as http;
 
 class LocationServices{
-  String key = 'AIzaSyDJu89H8BuFgVRPmlEAEhO4RJ8ym7Wf85I';
+  String key = '';
 
   Future<String> getPlaceId(String placeName) async {
     String url = 'https://maps.googleapis.com/maps/api/place/findplacefromtext/json?input=$placeName&inputtype=textquery&fields=place_id&key=$key';

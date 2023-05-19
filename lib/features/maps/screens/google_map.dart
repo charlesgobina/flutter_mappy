@@ -39,7 +39,7 @@ class MappyState extends State<Mappy> {
   
   List<LatLng> polylineCoordinates = [];
   PolylinePoints polylinePoints = PolylinePoints();
-  String googleAPiKey = "AIzaSyDJu89H8BuFgVRPmlEAEhO4RJ8ym7Wf85I";
+  String googleAPiKey = "";
 
   // static const CameraPosition _kGooglePlex = CameraPosition(
   //   target: LatLng(37.42796133580664, -122.085749655962),
